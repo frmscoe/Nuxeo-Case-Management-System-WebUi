@@ -1,0 +1,148 @@
+<!--
+@license
+(C) Copyright Nuxeo Corp. (http://nuxeo.com/)
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!--
+`nuxeo-bulk-custom-layout`
+@group Nuxeo UI
+@element nuxeo-bulk-custom-layout
+-->
+<dom-module id="nuxeo-bulk-custom-layout">
+  <template>
+    <style include="nuxeo-styles"></style>
+
+    <div role="widget">
+      <label id="boolField">Custom Boolean</label>
+      <paper-checkbox checked="{{document.properties.custom:bool}}" aria-labelledby="boolField" name="bool">
+      </paper-checkbox>
+    </div>
+
+    <div role="widget">
+      <label id="blobField">Custom Blob</label>
+      <nuxeo-dropzone value="{{document.properties.custom:blob}}" aria-labelledby="blobField" name="blob">
+      </nuxeo-dropzone>
+    </div>
+
+    <div role="widget">
+      <label id="blobRequiredField">Custom Blob (required)</label>
+      <nuxeo-dropzone
+        value="{{document.properties.custom:blobRequired}}"
+        aria-labelledby="blobRequiredField"
+        name="blobRequired"
+        required
+      ></nuxeo-dropzone>
+    </div>
+
+    <nuxeo-input
+      value="{{document.properties.custom:complex.substring}}"
+      label="Custom Substring"
+      type="text"
+      name="complex.substring"
+      role="widget"
+    ></nuxeo-input>
+
+    <nuxeo-input
+      value="{{document.properties.custom:complex.substringRequired}}"
+      label="Custom Substring (Required)"
+      type="text"
+      name="complex.substringRequired"
+      role="widget"
+      required
+    ></nuxeo-input>
+
+    <nuxeo-data-table
+      role="widget"
+      items="{{document.properties.custom:strings}}"
+      orderable="true"
+      editable="true"
+      name="strings"
+    >
+      <nuxeo-data-table-column name="Strings">
+        <template>
+          [[item]]
+        </template>
+      </nuxeo-data-table-column>
+      <nuxeo-data-table-form>
+        <template>
+          <nuxeo-input value="{{item}}" label="Custom Strings" type="text" name="strings"></nuxeo-input>
+        </template>
+      </nuxeo-data-table-form>
+    </nuxeo-data-table>
+
+    <nuxeo-data-table
+      role="widget"
+      items="{{document.properties.custom:stringsRequired}}"
+      orderable="true"
+      editable="true"
+      name="stringsRequired"
+      required
+    >
+      <nuxeo-data-table-column name="Strings">
+        <template>
+          [[item]]
+        </template>
+      </nuxeo-data-table-column>
+      <nuxeo-data-table-form>
+        <template>
+          <nuxeo-input value="{{item}}" label="Custom Strings (Required)" type="text" name="stringsRequired">
+          </nuxeo-input>
+        </template>
+      </nuxeo-data-table-form>
+    </nuxeo-data-table>
+
+    <nuxeo-data-table
+      role="widget"
+      items="{{document.properties.custom:complexList}}"
+      orderable="true"
+      editable="true"
+      name="complexList"
+    >
+      <nuxeo-data-table-column name="firstColumn">
+        <template>
+          [[item.first]]
+        </template>
+      </nuxeo-data-table-column>
+      <nuxeo-data-table-column name="secondColumn">
+        <template>
+          [[item.second]]
+        </template>
+      </nuxeo-data-table-column>
+      <nuxeo-data-table-form>
+        <template>
+          <nuxeo-input value="{{item.first}}" label="First" type="text" name="first"> </nuxeo-input>
+          <nuxeo-input value="{{item.second}}" label="Second" type="text" name="second"> </nuxeo-input>
+        </template>
+      </nuxeo-data-table-form>
+    </nuxeo-data-table>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'nuxeo-bulk-custom-layout',
+      behaviors: [Nuxeo.LayoutBehavior],
+      properties: {
+        /**
+         * The document representation that holds the property changes to be applied to all documents in the selection.
+         * Is consistent with the `document` object existing in all the other document layouts (facilitates Designer
+         * configuration).
+         */
+        document: {
+          type: Object,
+        },
+      },
+    });
+  </script>
+</dom-module>

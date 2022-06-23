@@ -1,0 +1,16 @@
+dist
+node_modules
+target
+.env
+.classpath
+.tmp
+.project
+npm-debug.log
+.settings/
+.DS_Store
+.screenshots/
+*.iml
+.idea
+.java-version
+.vscode
+coverage
