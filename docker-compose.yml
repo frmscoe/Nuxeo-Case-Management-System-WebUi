@@ -11,9 +11,9 @@ services:
       - webui
 
   webui:
-    image: nuxeo-web-ui:${NUXEO_WEB_UI_VERSION}
+    image: nuxeo-web-ui:latest
     build:
       context: .
     
   nuxeo:
-    image: nuxeo/nuxeo:${NUXEO_VERSION}
+    image: nuxeo/nuxeo:latest
