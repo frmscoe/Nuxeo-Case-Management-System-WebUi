@@ -17,7 +17,3 @@ services:
     
   nuxeo:
     image: nuxeo/nuxeo:${NUXEO_VERSION}
-    environment:
-      - NUXEO_DEV_MODE
-      - NUXEO_PACKAGES
-      - NUXEO_CLID
