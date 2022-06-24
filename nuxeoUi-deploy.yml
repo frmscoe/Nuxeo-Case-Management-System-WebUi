@@ -1,0 +1,15 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: https://frmfaas.sybrin.com
+functions:
+  nuxeoUi:
+    namespace: openfaas-fn
+    lang: Dockerfile
+    handler: .
+    image: actio.azurecr.io/nuxeoUi:latest
+    annotations:
+      com.openfaas.health.http.path: /health
+      com.openfaas.health.http.initialDelay: "45s"
+    secrets:
+      - frmpullsecret
